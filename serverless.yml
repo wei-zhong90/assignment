@@ -50,7 +50,7 @@ provider:
     CHECK_LIST: Oracle Google Microsoft Amazon Deloitte
 
 functions:
-  hello:
+  process:
     handler: handler.process
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
@@ -59,8 +59,6 @@ functions:
       - httpApi:
           path: /create
           method: put
-          cors: true
-
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
