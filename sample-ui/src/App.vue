@@ -27,7 +27,7 @@ export default {
       xhr.open('PUT', url, true)
       const that = this
       xhr.onreadystatechange = function() { 
-        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        if (this.readyState === XMLHttpRequest.DONE) {
           const response = JSON.parse(xhr.responseText)
           console.log(response.output)
           that.responseText = response.output
