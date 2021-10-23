@@ -7,17 +7,12 @@ check_list = os.environ['CHECK_LIST'].split(" ")
 added_mark = chr(169)
 
 def replace(msg):
-    result = []
-    txt_list = msg.split(" ")
-    for w in txt_list:
-        processed_word = w
-        for pattern in check_list:
-            if re.search(re.compile(pattern), processed_word):
-                processed_word = re.sub(re.compile(pattern), pattern+added_mark, processed_word)
-        result.append(processed_word)
-    result_string = " ".join(result)
-    print(result_string)
-    return result_string
+    processed_word = msg
+    for pattern in check_list:
+        if re.search(re.compile(pattern), processed_word):
+            processed_word = re.sub(re.compile(pattern), pattern+added_mark, processed_word)
+    # print(processed_word)
+    return processed_word
 
 def process(event, context):
     print(event)
