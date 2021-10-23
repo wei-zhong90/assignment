@@ -1,26 +1,40 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <div>
+      <textarea v-model="text" placeholder="TO BE PROCESSED TEXT" rows="6" cols="150"></textarea>
+    </div>
+    <button v-on:click="processText">Process</button>
+    <div>
+      <p>{{ responseText }}</p>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      text: '',
+      responseText: ''
+    }
+  },
+  methods: {
+    processText() {
+      const xhr = new XMLHttpRequest()
+      const url = process.env.VUE_APP_URL
+      console.log(url)
+      xhr.open('PUT', url, true)
+      const that = this
+      xhr.onreadystatechange = function() { 
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+          const response = JSON.parse(xhr.responseText)
+          console.log(response.output)
+          that.responseText = response.output
+        }
+      }
+      xhr.send(this.text)
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
