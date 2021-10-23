@@ -20,17 +20,27 @@ def replace(msg):
     return result_string
 
 def process(event, context):
-    body = {
-        "input": event['body'],
-        "output": replace(event['body'])
-    }
+    print(event)
+    if 'body' in event:
+        body = {
+            "input": event['body'],
+            "output": replace(event['body'])
+        }
 
-    response = {
-        "statusCode": 200,
-        "body": json.dumps(body)
-    }
-
+        response = {
+            "statusCode": 200,
+            "body": json.dumps(body)
+        }
+    else:
+        body = {
+            "output": "Please input some text"
+        }
+        response = {
+            "statusCode": 400,
+            "body": json.dumps(body)
+        }
     return response
+
 
 
 if __name__ == "__main__":
