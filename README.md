@@ -35,6 +35,7 @@ Please be aware that the tool `sls` is utilizing aws profile to access the corre
 Once finished API deployment, please take notes on the output url for the API endpoint. Check the *.env* file under *sample-ui/* path and replace the value of **VUE_APP_URL** to the output url you just noted. Then execute the following command at the root of *sample-ui/* path.
 
 ```bash
+npm install
 npm run serve
 ```
 
