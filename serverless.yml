@@ -25,6 +25,10 @@ provider:
   region: ap-northeast-1
   profile: default
 
+
+  httpApi:
+    cors: true
+
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
 #    - Effect: "Allow"
